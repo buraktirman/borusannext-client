@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import toDoService from "../../services/toDoService";
 import { ToDoModel } from "../../models/toDoModel";
+import { useNavigate } from "react-router-dom";
 
 const ToDoDetail = () => {
   const { id } = useParams();
   const [todo, setTodo] = useState<ToDoModel>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTodoDetails();
@@ -38,9 +40,7 @@ const ToDoDetail = () => {
             {todo?.completed ? "Tamamlandı" : "Tamamlanmadı"}
           </span>
           <button
-            onClick={() => {
-              window.history.back(); // Optional: Go back using browser history
-            }}
+            onClick={() => navigate(`/`)}
             className="mt-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded inline-block"
           >
             Geri Git
